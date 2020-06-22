@@ -1,10 +1,15 @@
-import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import Counter from './components/Counter';
-import counterReducer from './reducers/counterReducer';
+import React from "react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import logger from "redux-logger";
+import Counter from "./components/Counter";
+import counterReducer from "./reducers/counterReducer";
 
-const store = createStore(counterReducer);
+const store = createStore(
+  counterReducer,
+  composeWithDevTools(applyMiddleware(logger))
+);
 
 function App() {
   return (
